@@ -1,0 +1,38 @@
+/* TestRide.css */
+
+.container {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .image-container {
+    height: 450px;
+    grid-column: 1 / span 1;
+  }
+  
+  .text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    grid-column: 2 / span 1;
+  }
+  
+  .heading {
+    padding-bottom: 10px;
+  }
+  
+  .paragraph {
+    color: GrayText;
+  }
+  
+  /* Media Query for small devices */
+  @media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr;
+    }
+  }
+  

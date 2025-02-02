@@ -1,0 +1,72 @@
+/* AppHeader.css */
+
+/* Default styles */
+.ant-layout-header {
+    background-color: #001529;
+    padding: 0;
+  }
+  
+  .ant-btn-link {
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  .ant-btn-text {
+    color: #000;
+    font-size: 16px;
+    background-color: white;
+  }
+  
+  .ant-btn-primary {
+    font-weight: 600;
+  }
+  
+  .ant-btn-default {
+    font-weight: 600;
+  }
+  
+  /* Flex styles */
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  .flex-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .flex-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* Hide navigation links and buttons on small screens */
+  @media (max-width: 1000px) {
+    .flex-left .ant-btn-link {
+      display: none;
+    }
+    .flex-right .ant-btn {
+      display: none;
+    }
+    .burger{
+        display: none;
+    }
+  
+    /* Show only the hamburger icon */
+    .hamburger {
+      display: block;
+      cursor: pointer;
+    }
+  }
+  
+  /* For screens larger than 1000px, show the buttons and links */
+  @media (min-width: 1001px) {
+    .hamburger {
+      display: none;
+    }
+  }
+  
