@@ -5,14 +5,19 @@ import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 import { useAppSelector } from "../../redux/hooks";
 import { useGetProductByIdQuery } from "../../redux/features/admin/productApi";
 import { useNavigate, useParams } from "react-router";
+import { useGetAllOrderByEmailQuery } from "../../redux/features/admin/orderApi";
 
 const OrderModel = () => {
   const { id } = useParams();
-  const { data: productData, refetch } = useGetProductByIdQuery(id);
+  const { data: productData, refetch: Prefetch } = useGetProductByIdQuery(id);
+  const user = useAppSelector(selectCurrentUser);
+
+    const {  refetch: Orefetch } = useGetAllOrderByEmailQuery(user?.email || "");
+
   const [addOrder] = useAddOrderMutation();
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false); // Loading state for button spinner
-  const user = useAppSelector(selectCurrentUser);
+
   const navigate = useNavigate();
 
   const totalPrice = productData?.data?.price
@@ -45,7 +50,8 @@ const OrderModel = () => {
         message.error("Failed to place order. Please try again.");
       } else {
         message.success("Order placed successfully!");
-        refetch();
+        Prefetch()
+        Orefetch()
         navigate("/customer/view-order"); // Navigate to the desired URL
       }
     } catch (error) {
