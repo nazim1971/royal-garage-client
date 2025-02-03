@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { baseApi } from "../../api/baseApi";
-import { TUser } from "../auth/authSlice";
-
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -23,7 +21,7 @@ const userApi = baseApi.injectEndpoints({
     
     updateUserName: builder.mutation<
       any,
-      { email: string; userData: Partial<TUser> }
+      { email: string; userData: {name: string} }
     >({
       query: ({ email, userData }) => ({
         url: `/auth/user/${email}`,

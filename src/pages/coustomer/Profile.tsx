@@ -1,7 +1,7 @@
 import { Button, Card, Image, Input, message, Form } from "antd";
 import PasswordChangeModel from "../../components/modal/PasswordChangeModel";
 import { useGetUserByEmailQuery, useUpdateUserNameMutation } from "../../redux/features/admin/user.Api";
-import { selectCurrentUser, TUser } from "../../redux/features/auth/authSlice";
+import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 import { useAppSelector } from "../../redux/hooks";
 import { useState } from "react";
 
@@ -24,21 +24,37 @@ const Profile = () => {
   };
 
   // Handle name update
-  const handleNameUpdate = async (values: { newName: string }) => {
-    const { newName } = values;
-    if (newName.trim()) {
-      try {
-        await updateUserName({ email: user?.email as string, userData: newName }).unwrap();
+// Handle name update
+// Handle name update
+const handleNameUpdate = async (values: { newName: string; }) => {
+  const  newName  = values?.newName;
+
+  if (newName.trim()) {
+    try {
+      const response = await updateUserName({
+        email: user?.email as string,
+        userData: { name: newName} , // Ensure the name is inside the userData object
+      }).unwrap();
+
+      console.log("Sending plain text to API:", newName);
+      
+      if (response.success) {
         message.success("Name updated successfully");
         setIsEditingName(false);
         refetch(); // Refetch user data after update
-      } catch (error) {
-        message.error("Failed to update name");
+      } else {
+        message.error(response.message || "Failed to update name");
       }
-    } else {
-      message.warning("Name cannot be empty");
+    } catch (error: any) {
+      // Handle error case
+      message.error(error?.data?.message || "Failed to update name");
+      console.log(error);
     }
-  };
+  } else {
+    message.warning("Name cannot be empty");
+  }
+};
+
 
   return (
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
@@ -68,20 +84,19 @@ const Profile = () => {
         {/* User Info - Editable Name */}
         <div style={{ marginBottom: "20px" }}>
           <h3>
-            Name:{" "}
+            Name:
             {isEditingName ? (
               <Form
                 initialValues={{ newName: Suser?.data?.name }}
                 onFinish={handleNameUpdate}
                 layout="inline"
+                style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
               >
                 <Form.Item
                   name="newName"
                   rules={[{ required: true, message: "Name is required" }]}
                 >
-                  <Input
-                    style={{ width: "70%" }}
-                  />
+                  <Input style={{ width: "70%" }} />
                 </Form.Item>
                 <Form.Item>
                   <Button type="primary" htmlType="submit" style={{ marginRight: "10px" }}>

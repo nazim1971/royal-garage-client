@@ -7,6 +7,9 @@ export type TUser = {
   password?: string;
   currentPassword?: string;
   newPassword?: string;
+  userData?: {
+    name: string
+  };
   role: string;
   iat: number;
   exp: number;
