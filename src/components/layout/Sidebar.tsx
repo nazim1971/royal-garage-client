@@ -2,21 +2,30 @@ import Sider from "antd/es/layout/Sider";
 import { adminPaths } from "../../routes/admin/AdminPaths";
 import { customerPaths } from "../../routes/customer/CustomerPaths";
 import { menuGenerator } from "../../utils/sidebarMenuGeneratoe";
-import { Image, Menu } from "antd";
-import { useAppSelector } from "../../redux/hooks";
-import { selectCurrentUser } from "../../redux/features/auth/authSlice";
+import { Button, Image, Menu } from "antd";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { logout, selectCurrentUser } from "../../redux/features/auth/authSlice";
 import { useGetUserByEmailQuery } from "../../redux/features/admin/user.Api";
+import { CloseOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router";
 
 const userRole = {
   ADMIN: "admin",
   CUSTOMER: "customer",
 };
 
-const Sidebar: React.FC<{ visible: boolean; setVisible: (visible: boolean) => void }> = ({ visible }) => {
+const Sidebar: React.FC<{
+  visible: boolean;
+  setVisible: (visible: boolean) => void;
+}> = ({ visible,setVisible }) => {
   // Fetch the current user
+    const dispatch = useAppDispatch();
   const user = useAppSelector(selectCurrentUser);
-  const {data: userData} = useGetUserByEmailQuery(user?.email);
- 
+  const token = useAppSelector((state) => state.auth.token) as string;
+  const navigate = useNavigate();
+
+  const { data: userData } = useGetUserByEmailQuery(user?.email);
+
   const role = user?.role || ""; // Default to empty string if the role is undefined
 
   let sidebarItems;
@@ -33,6 +42,15 @@ const Sidebar: React.FC<{ visible: boolean; setVisible: (visible: boolean) => vo
       break;
   }
 
+  const handleCloseClick = () => {
+    setVisible(false); // Close the sidebar
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/"); // Redirect to login after logout
+  };
+
   return (
     <>
       {/* Sidebar component */}
@@ -42,7 +60,7 @@ const Sidebar: React.FC<{ visible: boolean; setVisible: (visible: boolean) => vo
           position: "fixed", // Fixed position to float above other content
           top: 0, // Start from the top of the viewport
           left: 0, // Align to the left
-          backgroundColor: "#001529", // Ant Design's default dark background color
+          backgroundColor: "#001521",
           height: "100vh", // Full viewport height
           zIndex: 999, // Ensure it appears above other content
           transform: visible ? "translateX(0)" : "translateX(-100%)", // Smooth transition for showing/hiding
@@ -50,6 +68,10 @@ const Sidebar: React.FC<{ visible: boolean; setVisible: (visible: boolean) => vo
         }}
       >
         {/* Header section with optional logo or title */}
+
+        <div style={{ marginTop: '20px', textAlign: 'right', marginRight:'20px'}}>
+        <CloseOutlined onClick={ handleCloseClick } style={{ fontSize: "24px", color: "#fff" }} />
+        </div>
         <div
           style={{
             color: "white",
@@ -57,25 +79,29 @@ const Sidebar: React.FC<{ visible: boolean; setVisible: (visible: boolean) => vo
             textAlign: "center",
             fontSize: "24px",
             fontWeight: "bold",
+            marginTop: '20px'
           }}
         >
-          Royal Garage
+          Royal Garage    
         </div>
-        <div style={{
-          textAlign: 'center',
-          color: 'white'
-        }}>
-          <Image
-          
-          src={userData?.data?.image}
+        <div
           style={{
-            borderRadius: '100%',
-            height: '120px',
-            width: '120px'
+            textAlign: "center",
+            color: "white",
           }}
+        >
+          <Image
+            src={userData?.data?.image}
+            style={{
+              borderRadius: "100%",
+              height: "120px",
+              width: "120px",
+            }}
           />
 
-          <h3 style={{paddingTop: '10px'}} > {userData?.data?.name} </h3>
+        
+
+          <h3 style={{ paddingTop: "10px" }}> {userData?.data?.name} </h3>
         </div>
 
         {/* Sidebar menu */}
@@ -86,6 +112,29 @@ const Sidebar: React.FC<{ visible: boolean; setVisible: (visible: boolean) => vo
           items={sidebarItems}
           style={{ border: "none" }} // Clean up borders
         />
+
+         {/* Login/Logout Button */}
+         <div style={{ textAlign: "center", marginTop: "20px" }}>
+          {token ? (
+            <Button
+              onClick={handleLogout}
+              type="default"
+              shape="round"
+              style={{ fontWeight: 600, color: "white", backgroundColor: "red", border: "none" }}
+            >
+              Logout
+            </Button>
+          ) : (
+            <Button
+              href="/login"
+              type="default"
+              shape="round"
+              style={{ fontWeight: 600, color: "white", backgroundColor: "#00368f", border: "none" }}
+            >
+              Login
+            </Button>
+          )}
+        </div>
       </Sider>
     </>
   );

@@ -5,7 +5,7 @@ const AppFooter = () => {
   return (
     <Footer
       style={{
-        backgroundColor: "GrayText",
+        backgroundColor: '#182955',
         color: "#fff",
         padding: "40px 20px",
         textAlign: "center",
@@ -15,8 +15,9 @@ const AppFooter = () => {
       <Row justify="center">
         <Col span={24}>
           <div style={{ marginBottom: "20px" }}>
+            <img style={{height: '100px', width: '100px', borderRadius: '100%'}} src="https://res.cloudinary.com/dfvgxf4dc/image/upload/v1738346961/Black_Retro_Motorcycle_Circle_Logo_1_tuxsuh.png" alt="" />
             <h3 style={{ color: "#fff", fontWeight: 600, fontSize: "24px" }}>
-              Your Company Name
+             Royal-Garage
             </h3>
             <p style={{ color: "#ccc", fontSize: "16px", maxWidth: "500px", margin: "0 auto" }}>
               Delivering quality products & services with passion and integrity.
@@ -34,7 +35,7 @@ const AppFooter = () => {
             {["Home", "About Us", "Services", "Contact"].map((item) => (
               <li key={item} style={{ marginBottom: "8px" }}>
                 <a
-                  href="#"
+                  href="/"
                   style={{
                     color: "#ccc",
                     textDecoration: "none",
@@ -55,8 +56,8 @@ const AppFooter = () => {
           <h4 style={{ color: "#fff", fontSize: "18px", marginBottom: "12px" }}>Contact Us</h4>
           <ul style={{ listStyleType: "none", padding: 0, color: "#ccc" }}>
             <li>Phone: +123 456 7890</li>
-            <li>Email: info@yourcompany.com</li>
-            <li>Address: 123 Main St, City, Country</li>
+            <li>Email: info@royagarage.com</li>
+            <li>Address: Mohammadpur, Dhaka</li>
           </ul>
         </Col>
 
@@ -86,7 +87,7 @@ const AppFooter = () => {
 
       {/* Footer Bottom */}
       <div style={{ marginTop: "30px", color: "#ccc", fontSize: "14px" }}>
-        © {new Date().getFullYear()} Your Company Name. All rights reserved.
+        © {new Date().getFullYear()} Royal-Garage. All rights reserved.
       </div>
     </Footer>
   );

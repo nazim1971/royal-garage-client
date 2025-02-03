@@ -16,7 +16,7 @@ const MainLayout = () => {
       <Layout>
 
         <AppHeader setSidebarVisible={setSidebarVisible} sidebarVisible={sidebarVisible} />
-        <Content style={{ margin: "24px 16px 0" }}>
+        <Content style={{ margin: "20px 16px 0" }}>
           <div
             style={{
               padding: 24,

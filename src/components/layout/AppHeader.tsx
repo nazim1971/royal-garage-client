@@ -10,7 +10,7 @@ import "../../styles/AppHeader.css";  // Import the CSS file
 const { Header } = Layout;
 
 const AppHeader: React.FC<{ setSidebarVisible: (visible: boolean) => void, sidebarVisible: boolean }> = ({ setSidebarVisible, sidebarVisible }) => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const token = useAppSelector((state) => state.auth.token) as string;
   const navigate = useNavigate();
 
@@ -41,12 +41,12 @@ const AppHeader: React.FC<{ setSidebarVisible: (visible: boolean) => void, sideb
     setSidebarVisible(false); // Close the sidebar
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
-  };
+  // const handleLogout = () => {
+  //   dispatch(logout());
+  // };
 
   return (
-    <Header className="ant-layout-header">
+    <Header className="ant-layout-header" style={{ height: '80px'}}>
       <div className="flex-container">
         {/* Logo and Nav */}
         <div className="flex-left">
@@ -88,9 +88,6 @@ const AppHeader: React.FC<{ setSidebarVisible: (visible: boolean) => void, sideb
         <div className="flex-right">
           {token ? (
             <div className="burger" style={{display: 'flex', gap: '10px'}} onClick={sidebarVisible ? handleCloseClick : handleHamburgerClick}>
-               <Button onClick={() => handleLogout()} type="default" shape="round" style={{ fontWeight: 600 }}>
-                Logout
-              </Button>
             {sidebarVisible ? (
               <CloseOutlined style={{ fontSize: "24px", color: "#fff" }} />
             ) : (
@@ -106,27 +103,7 @@ const AppHeader: React.FC<{ setSidebarVisible: (visible: boolean) => void, sideb
           )}
         </div>
 
-        {/* Hamburger/Close Icon for Mobile */}
-        <div className="hamburger" onClick={sidebarVisible ? handleCloseClick : handleHamburgerClick}>
-        {token ? (
-            <div>
-               <Button onClick={() => handleLogout()} type="default" shape="round" style={{ fontWeight: 600 }}>
-             Logout
-           </Button>
-            </div>
-          ) : (
-            <div>
-              <Button href="/login" type="default" shape="round" style={{ fontWeight: 600 }}>
-                Login
-              </Button>
-            </div>
-          )}
-          {sidebarVisible ? (
-            <CloseOutlined style={{ fontSize: "24px", color: "#fff" }} />
-          ) : (
-            <MenuOutlined style={{ fontSize: "24px", color: "#fff" }} />
-          )}
-        </div>
+  
       </div>
     </Header>
   );

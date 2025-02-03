@@ -105,7 +105,7 @@ const ManageUsers = () => {
   };
 
   return (
-    <>
+    <div style={{ maxWidth: '1200px', margin: 'auto'}}>
       <div style={{ marginBottom: "20px" }}>
         {/* Filter for Blocked and Active users */}
         <Select
@@ -132,7 +132,7 @@ const ManageUsers = () => {
         rowKey="_id"
         scroll={{ x: 'max-content' }}  // Enable horizontal scroll
       />
-    </>
+    </div>
   );
 };
 

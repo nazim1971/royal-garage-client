@@ -16,8 +16,6 @@ const PasswordChangeModel: React.FC<PasswordChangeModelProps> = ({ open, onClose
   const [loading, setLoading] = useState(false);  // To handle loading state
   const [resetPass] = useResetUserPassMutation();  // Mutation hook
 
-  console.log(user);
-
   const onFinish = async (values: TUser) => {
     setLoading(true);  // Start loading spinner
     try {
@@ -27,10 +25,10 @@ const PasswordChangeModel: React.FC<PasswordChangeModelProps> = ({ open, onClose
         newPassword: values?.newPassword,
       };
 
-      console.log("user Data", userData);
+   
 
       const res = await resetPass(userData) as any
-      console.log("Response:", res);
+
 
       if (res?.error) {
         message.error(res.error?.data?.message || 'Failed to reset password.');

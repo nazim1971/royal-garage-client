@@ -170,6 +170,7 @@ const ManageOrder: React.FC = () => {
     <Table<DataType>
       loading={isFetching}
       columns={columns}
+      style={{ maxWidth: '1200px', margin: 'auto'}}
       dataSource={tableData}
       onChange={onChange}
       rowKey="_id"

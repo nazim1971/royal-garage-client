@@ -6,7 +6,7 @@ import '../../styles/Accodian.css'
 
 const Home = () => {
   return (
-    <>
+    <div style={{ maxWidth: '1200px', margin: 'auto'}}>
       <Carosel />
 
       <div style={{ textAlign: "center" , padding: "40px "}}>
@@ -88,7 +88,7 @@ const Home = () => {
   </Row>
 </div>
 
-      <section className="accordion-section" style={{padding:'40px 20px'}}>
+      <section className="accordion-section" style={{padding:'40px 0px'}}>
             <h2>Customer Testimonials</h2>
             <Collapse accordion>
                 <Panel header="John Doe - Happy Customer" key="1">
@@ -102,7 +102,7 @@ const Home = () => {
                 </Panel>
             </Collapse>
         </section>
-    </>
+    </div>
   );
 };
 

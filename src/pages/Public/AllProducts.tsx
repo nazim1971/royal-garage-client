@@ -68,7 +68,7 @@ const AllProducts = () => {
   }
 
   return (
-    <div>
+    <div style={{ maxWidth: '1200px', margin: 'auto', marginBottom: '60px'}}>
       {/* Filters Section */}
       <Row gutter={[16, 16]} style={{ marginBottom: '20px' }}>
         <Col xs={24} sm={12} md={6}>
@@ -126,7 +126,6 @@ const AllProducts = () => {
               sm={12}
               md={8}
               xl={6}
-              xxl={4}
               key={i._id}
               style={{ display: "flex", justifyContent: "center" }}
             >

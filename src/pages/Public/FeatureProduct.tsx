@@ -36,7 +36,6 @@ const FeaturedProducts = () => {
               sm={12}
               md={8}
               xl={6}
-              xxl={4}
               key={i._id}
               style={{ display: "flex", justifyContent: "center" }}
             >

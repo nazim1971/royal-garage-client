@@ -64,7 +64,7 @@ const ManageProducts = () => {
   };
 
   return (
-    <>
+    <div style={{ maxWidth: '1200px', margin: 'auto'}}>
       <Flex
         // justifyContent="end"
         style={{
@@ -99,7 +99,6 @@ const ManageProducts = () => {
             sm={12}
             md={8}
             lg={6}
-            xxl={4}
             key={product._id}
             style={{
               display: 'flex',
@@ -161,7 +160,7 @@ const ManageProducts = () => {
           setSelectedProduct(null);
         }}
       />
-    </>
+    </div>
   );
 };
 
