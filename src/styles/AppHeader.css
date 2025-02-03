@@ -63,7 +63,7 @@
       display: block;
     }
     .burger2{
-      display: block !important;
+      display:  !important;
     }
   
     /* Show only the hamburger icon */

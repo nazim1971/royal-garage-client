@@ -1,9 +1,9 @@
 
 import { Layout, Button, Image } from "antd";
 import { useAppSelector} from "../../redux/hooks";
-import {  TUser } from "../../redux/features/auth/authSlice";
-import { NavLink, useNavigate } from "react-router"; // Corrected 'react-router' import
-import { verifyToken } from "../../utils/verifyToken";
+// import {  TUser } from "../../redux/features/auth/authSlice";
+import { NavLink } from "react-router"; // Corrected 'react-router' import
+// import { verifyToken } from "../../utils/verifyToken";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";  // For the hamburger and close icons
 import "../../styles/AppHeader.css";  // Import the CSS file
 
@@ -12,26 +12,26 @@ const { Header } = Layout;
 const AppHeader: React.FC<{ setSidebarVisible: (visible: boolean) => void, sidebarVisible: boolean }> = ({ setSidebarVisible, sidebarVisible }) => {
 
   const token = useAppSelector((state) => state.auth.token) as string;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // Ensure the token is valid before calling verifyToken
-  let decodeT: TUser | null = null;
-  if (token) {
-    try {
-      decodeT = verifyToken(token) as TUser;
-    } catch (error) {
-      console.error("Error verifying token:", error);
-      // Handle invalid token case, e.g., log out the user or redirect to login
-    }
-  }
 
-  const handleDashboardClick = async () => {
-    if (decodeT) {
-      navigate(`/${decodeT.role}`); // Navigate to the dashboard
-    } else {
-      // Optionally handle cases when decodeT is null
-    }
-  };
+  // if (token) {
+  //   try {
+  //   const  decodeT = verifyToken(token) as TUser;
+  //   } catch (error) {
+  //     console.error("Error verifying token:", error);
+  //     // Handle invalid token case, e.g., log out the user or redirect to login
+  //   }
+  // }
+
+  // const handleDashboardClick = async () => {
+  //   if (decodeT) {
+  //     navigate(`/${decodeT.role}`); // Navigate to the dashboard
+  //   } else {
+  //     // Optionally handle cases when decodeT is null
+  //   }
+  // };
 
   const handleHamburgerClick = async () => {
     setSidebarVisible(true); // Open the sidebar
@@ -74,11 +74,11 @@ const AppHeader: React.FC<{ setSidebarVisible: (visible: boolean) => void, sideb
               All Products
             </Button>
           </NavLink>
-          {token && decodeT && (
+          {/* {token && decodeT && (
             <Button type="link" className="ant-btn-link" onClick={handleDashboardClick}>
               Dashboard
             </Button>
-          )}
+          )} */}
         </div>
 
         {/* Auth Section */}
