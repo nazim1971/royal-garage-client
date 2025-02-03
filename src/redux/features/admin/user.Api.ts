@@ -12,15 +12,13 @@ const userApi = baseApi.injectEndpoints({
       }),
     }),
 
-    resetUserPass: builder.mutation<
-      any,
-      { userData: Partial<TUser> }
-    >({
-      query: ({  userData }) => ({
+    resetUserPass: builder.mutation({
+      query: (userData) => ({
         url: `/auth/reset-password`,
         method: "PUT",
         body: userData,
-      }),
+       
+      } ),
     }),
     
     updateUserName: builder.mutation<

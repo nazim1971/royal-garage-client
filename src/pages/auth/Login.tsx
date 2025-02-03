@@ -153,7 +153,6 @@ const Login = () => {
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.8")} // Set opacity on hover
                 onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                loading={isLoading} // Add the loading prop to show spinner
               >
                 {isLoading ? <Spin /> : "Login"} {/* Show spinner when loading */}
               </Button>

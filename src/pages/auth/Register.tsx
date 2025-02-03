@@ -211,7 +211,7 @@ const Register = () => {
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.opacity = "0.8"}
                 onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
-                loading={loading} // Add loading prop to button
+               
               >
                 {loading ? 'Registering...' : 'Register'}
               </Button>

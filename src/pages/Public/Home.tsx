@@ -1,4 +1,4 @@
-import { Collapse } from "antd";
+import { Button, Col, Collapse, Row } from "antd";
 import Carosel from "./Carosel";
 import FeatureProduct from "./FeatureProduct";
 const { Panel } = Collapse;
@@ -31,17 +31,62 @@ const Home = () => {
             alt=""
           />
         </div>
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', textAlign: 'center'}}>
           <h1 style={{ paddingBottom: "10px" }}>
             Request a Motorcycle Test Ride
           </h1>
-          <p style={{ color: "GrayText" }}>
+          <p style={{ color: "GrayText", width: '80%' }}>
             Schedule a free motorcycle test ride on a Suzuki bike at your local
             dealer. Test ride a motorcycle to learn which is the right bike for
             you.
           </p>
         </div>
       </div>
+
+
+
+{/* Service */}
+      <div style={{ height: '500px', display:'flex', alignItems: 'center', textAlign: 'center',backgroundColor: '#182955', color: 'white', padding: '20px', margin: '30px 0px' }}>
+  <Row
+    gutter={[16, 16]} // Spacing between columns and rows
+    justify="center" // Center content horizontally
+    align="middle" // Align items vertically
+  >
+    {/* First Column - Text Content */}
+    <Col xs={24} md={12}>
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center' , gap: '10px', textAlign: 'center'}}>
+        <h1>SERVICES</h1>
+        <p style={{width: '80%', textAlign: 'center'}}>
+          At the Suzuki Service Center, we're committed to keeping your Suzuki
+          in peak condition.
+        </p>
+        <Button
+          style={{
+            color: 'white',
+            backgroundColor: '#00368f',
+            borderRadius: '16px',
+            border: 'none',
+            padding: '10px 20px',
+            width: '65%'
+          }}
+        >
+          CHOOSE YOUR PACKAGE
+        </Button>
+      </div>
+    </Col>
+
+    {/* Second Column - Image */}
+    <Col xs={24} md={12}>
+      <div>
+        <img
+          src="https://res.cloudinary.com/dfvgxf4dc/image/upload/v1738572791/Service-Banner-E_tdiq7d.webp"
+          alt="Service Banner"
+          style={{ width: '100%', borderRadius: '10px' }}
+        />
+      </div>
+    </Col>
+  </Row>
+</div>
 
       <section className="accordion-section" style={{padding:'40px 20px'}}>
             <h2>Customer Testimonials</h2>

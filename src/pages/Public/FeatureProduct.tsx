@@ -80,7 +80,9 @@ const FeaturedProducts = () => {
                 <p style={{ color: 'GrayText', fontSize: '18px', paddingBottom: '20px' }}>
                   Brand: {i?.brand}
                 </p>
-
+                <p style={{ color: 'GrayText', fontSize: '18px', paddingBottom: '20px' }}>
+                  Model: {i?.model}
+                </p>
                 <Tag
                   style={{
                     backgroundColor: i?.inStock ? "#D0F9D7" : "#FAD4D4",

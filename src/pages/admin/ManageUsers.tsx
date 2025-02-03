@@ -1,6 +1,7 @@
 import { Table, TableColumnsType, Button, Popconfirm, Tag, Select } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useGetAllUsersQuery, useUpdateUserBlockedStatusMutation } from "../../redux/features/admin/user.Api";
+import { TUser } from "../../redux/features/auth/authSlice";
 
 // Define the DataType for the users
 interface DataType {
@@ -12,15 +13,21 @@ interface DataType {
 
 // ManageUsers component
 const ManageUsers = () => {
-  const { data: usersData, isFetching } = useGetAllUsersQuery(undefined);
+  const { data: allUser, isLoading } = useGetAllUsersQuery(undefined);
+ 
+
+
+  // Memoize usersData to avoid unnecessary recalculations
+  const usersData = useMemo(() => allUser?.data?.filter((i: TUser) => i?.role !== 'admin'), [allUser]);
+
   const [updateBlockedStatus] = useUpdateUserBlockedStatusMutation();
   const [tableData, setTableData] = useState<DataType[]>([]);
   const [filteredStatus, setFilteredStatus] = useState<string | undefined>(undefined);
 
   // Mapping the table data from the fetched users
   useEffect(() => {
-    if (usersData?.data) {
-      const mappedData: DataType[] = usersData.data.map((user: any) => ({
+    if (usersData) {
+      const mappedData: DataType[] = usersData?.map((user: any) => ({
         _id: user._id,
         email: user.email,
         role: user.role,
@@ -29,6 +36,7 @@ const ManageUsers = () => {
       setTableData(mappedData);
     }
   }, [usersData]);
+
 
   // Define columns for the AntD table
   const columns: TableColumnsType<DataType> = [
@@ -112,7 +120,7 @@ const ManageUsers = () => {
       </div>
 
       <Table<DataType>
-        loading={isFetching}
+        loading={isLoading}
         columns={columns}
         dataSource={
           filteredStatus
