@@ -65,6 +65,7 @@ const Sidebar: React.FC<{
           zIndex: 999, // Ensure it appears above other content
           transform: visible ? "translateX(0)" : "translateX(-100%)", // Smooth transition for showing/hiding
           transition: "transform 0.3s ease-in-out", // Add smooth sliding animation
+          overflowY: 'auto'
         }}
       >
         {/* Header section with optional logo or title */}
@@ -116,7 +117,7 @@ const Sidebar: React.FC<{
         />
 
          {/* Login/Logout Button */}
-         <div style={{ textAlign: "center", marginTop: "20px" }}>
+         <div style={{ textAlign: "center", marginTop: "20px", paddingBottom: '30px' }}>
           {token ? (
             <Button
               onClick={handleLogout}
