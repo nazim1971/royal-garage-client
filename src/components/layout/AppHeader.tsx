@@ -92,8 +92,8 @@ const AppHeader: React.FC<{ setSidebarVisible: (visible: boolean) => void, sideb
             )}
           </div>
           ) : (
-            <div>
-              <Button href="/login" type="default" shape="round" style={{ fontWeight: 600 }}>
+            <div >
+              <Button  href="/login" type="default" shape="round" style={{ fontWeight: 600 }}>
                 Login
               </Button>
             </div>
