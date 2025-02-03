@@ -7,6 +7,10 @@
     align-items: center;
     padding: 0;
   }
+
+  .burger2{
+    display: none !important;
+  }
   
   .ant-btn-link {
     color: #fff;
@@ -52,11 +56,14 @@
     .flex-left .ant-btn-link {
       display: none;
     }
-    .flex-right .ant-btn-link {
+    .flex-right .ant-btn {
       display: none;
     }
     .burger {
       display: block;
+    }
+    .burger2{
+      display: block !important;
     }
   
     /* Show only the hamburger icon */

@@ -96,6 +96,13 @@ const AppHeader: React.FC<{ setSidebarVisible: (visible: boolean) => void, sideb
               <Button  href="/login" type="default" shape="round" style={{ fontWeight: 600 }}>
                 Login
               </Button>
+              <div className="burger2" style={{display: 'flex', gap: '10px'}} onClick={sidebarVisible ? handleCloseClick : handleHamburgerClick}>
+            {sidebarVisible ? (
+              <CloseOutlined style={{ fontSize: "24px", color: "#fff" }} />
+            ) : (
+              <MenuOutlined style={{ fontSize: "24px", color: "#fff" }} />
+            )}
+          </div>
             </div>
           )}
         </div>
