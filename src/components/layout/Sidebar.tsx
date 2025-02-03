@@ -90,14 +90,16 @@ const Sidebar: React.FC<{
             color: "white",
           }}
         >
-          <Image
-            src={userData?.data?.image}
-            style={{
-              borderRadius: "100%",
-              height: "120px",
-              width: "120px",
-            }}
-          />
+         {
+          token &&  <Image
+          src={userData?.data?.image}
+          style={{
+            borderRadius: "100%",
+            height: "120px",
+            width: "120px",
+          }}
+        />
+         }
 
         
 
