@@ -150,7 +150,7 @@ const ViewOrder = () => {
   ];
 
   return (
-    <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
+    <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
     <Table<DataType>
       loading={isFetching}
       columns={columns}

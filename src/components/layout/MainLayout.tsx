@@ -19,7 +19,7 @@ const MainLayout = () => {
         <Content style={{ margin: "20px 16px 0" }}>
           <div
             style={{
-              padding: 24,
+              padding: 10,
               minHeight: 360,
             }}
           >
